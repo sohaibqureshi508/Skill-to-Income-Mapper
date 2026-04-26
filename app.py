@@ -4,12 +4,16 @@ import plotly.graph_objects as go
 import os
 
 # Optional AI (Groq)
-USE_AI = False
-try:
-    from groq import Groq
-    client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+# Replace your current try/except block with this for better debugging
+import os
+from groq import Groq
+
+api_key = os.getenv("GROQ_API_KEY")
+if api_key:
+    client = Groq(api_key=api_key)
     USE_AI = True
-except:
+else:
+    st.sidebar.warning("GROQ_API_KEY not found. AI features disabled.")
     USE_AI = False
 
 # -----------------------------
